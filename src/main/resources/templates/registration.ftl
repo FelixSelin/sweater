@@ -3,8 +3,6 @@
 
 <@c.page>
     Add new
-    <#if message??>
-    <strong>${message}</strong>
-    </#if>
+    ${message!}
     <@l.login "/registration" />
 </@c.page>
