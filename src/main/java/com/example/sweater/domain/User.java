@@ -17,6 +17,10 @@ public class User implements UserDetails {
     private String password;
     private boolean active;
 
+    public boolean isAdmin(){
+        return roles.contains(Role.ADMIN);
+    }
+
     public Long getId() {
         return id;
     }
@@ -27,26 +31,6 @@ public class User implements UserDetails {
 
     public String getUsername() {
         return username;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return isActive();
     }
 
     public void setUsername(String username) {
@@ -80,6 +64,26 @@ public class User implements UserDetails {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return isActive();
     }
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
